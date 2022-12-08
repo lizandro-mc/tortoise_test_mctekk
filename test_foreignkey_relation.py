@@ -76,26 +76,28 @@ async def run():
     await event.participants.add(participants[0], participants[1])
     await event.participants.add(participants[0], participants[1])
 
+    # Normal for give error 
     try:
         for team in event.participants:
-            print(team.id)
+            print("For try: ", team.id)
     except NoValuesFetched:
         pass
 
+    # Async fetch always first time
     async for team in event.participants:
-        print(team.id)
+        print("For async: ", team.id)
 
     for team in event.participants:
-        print(team.id)
+        print("Normal for: ", team.id)
 
-    print(
+    print( "Filter paticipants and tournament: ",
         await Event.filter(participants=participants[0].id).prefetch_related(
             "participants", "tournament"
         )
     )
     print(await participants[0].fetch_related("events"))
 
-    print(await Team.fetch_for_list(participants, "events"))
+    print("Test list: ", await Team.fetch_for_list(participants, "events"))
 
     print(await Team.filter(events__tournament__id=tournament.id))
 

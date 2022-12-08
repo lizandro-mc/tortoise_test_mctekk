@@ -13,23 +13,28 @@ class Patient(Model):
 
 class Clinic(Model):
     id = fields.IntField(pk=True)
+# Event
 
 
 class Client(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=100)
-    communications: fields.ReverseRelation["Communication"]
+    communications: fields.ManyToManyRelation["Communication"] = fields.ManyToManyField(
+        "models.Communication", related_name="clients", through="client_communication"
+    )
 
-    class Meta:
-        ordering = ["name"]
+    def __str__(self):
+        return self.name
+
+
+# Team
 
 
 class Communication(Model):
     id = fields.IntField(pk=True)
-    client = fields.ForeignKeyRelation[Client] = fields.ForeignKeyField(
-        "models.Client", related_name="communications"
-    )
-    communication = fields.CharField(max_length=100)
+    communication = fields.TextField()
+
+    clients = fields.ManyToManyRelation[Client]
 
     class Meta:
         ordering = ["communication"]
@@ -40,21 +45,25 @@ async def run():
     await Tortoise.init(db_url="sqlite://:memory:", modules={"models": ["__main__"]})
     await Tortoise.generate_schemas()
 
-    Communication_Pydantic = pydantic_model_creator(Communication)
-    Communication_Pydantic_List = pydantic_queryset_creator(Communication)
-    Client_Pydantic = pydantic_model_creator(Client)
+    comms = []
 
-    client_1 = await Client.create(name="Juan")
-    await client_1.save()
- 
+    for i in range(0, 10):
+        communication = Communication(communication=f"Comm test {i +1}!")
+        await communication.save()
+        print(f"Print comm {i}: ", communication.id)
+        comms.append(communication)
 
-    comm = await Communication(Communication="Client one", client_id=client_1.id).save()
+    client = Client(
+        name=f"Pepe 0"
+    )
 
-    p = await Communication_Pydantic.from_tortoise_orm(await Communication.get(communication="Client one"))
-    print("One Comm:", p.json(indent=4))
+    await client.save()
 
-    # pt = await Tournament_Pydantic_List.from_queryset(Tournament.filter(events__id__isnull=False))
-    # print("All tournaments without events:", pt.json(indent=4))
+    for comm in comms:
+        await client.communications.add(comm)
+
+    print("Print client id: ", client.id)
+  
 
 if __name__ == "__main__":
     run_async(run())
