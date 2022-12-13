@@ -4,13 +4,11 @@ from tortoise.contrib.pydantic import (
     pydantic_queryset_creator
 )
 
-from models.relationship import (
-    Client,
-    Communication,
-    Patient,
-    Employee,
-    Clinic
-)
+from models.query.client import Client
+from models.query.clinic import Clinic
+from models.query.communication import Communication
+from models.query.employee import Employee
+from models.query.patient import Patient
 
 
 Client_Pydantic = pydantic_model_creator(Client)

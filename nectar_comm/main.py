@@ -2,15 +2,13 @@
 from tortoise import Tortoise, run_async
 from tortoise.query_utils import Prefetch
 
-# Models imports
-from models.relationship import (
-    Client,
-    Communication,
-    Clinic,
-    Employee,
-    Patient
-)
+# Query Models imports
 
+from models.query.client import Client
+from models.query.clinic import Clinic
+from models.query.communication import Communication
+from models.query.employee import Employee
+from models.query.patient import Patient
 
 async def reset_db():
     await Tortoise.init(db_url="sqlite://db.sqlite3", modules={"models": ["__main__"]})
