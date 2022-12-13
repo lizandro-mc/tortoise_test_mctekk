@@ -55,6 +55,7 @@ async def run():
     await Communication.all().update(client=client2)
     communication = await Communication.first()
     print(communication.client_id)
+    Client.query_test()
 
 
 if __name__ == "__main__":

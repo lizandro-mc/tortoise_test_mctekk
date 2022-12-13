@@ -5,3 +5,7 @@ class Client(Relations):
     class Meta:
         table = "clients"
         table_description = "Saved all info about the client"
+
+    @staticmethod
+    def query_test():
+        print("Query test!")
