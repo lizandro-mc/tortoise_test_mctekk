@@ -1,5 +1,5 @@
 from html.entities import name2codepoint
-from models.base.nectar_base_model import NectarBaseModel, Named
+from nectar_comm.models.base.nectar_base_model import NectarBaseModel, Named
 
 
 class PatientBaseModel(Named, NectarBaseModel):

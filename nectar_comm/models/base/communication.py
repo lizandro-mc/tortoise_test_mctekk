@@ -1,6 +1,6 @@
 from tortoise import fields
 from enum import Enum
-from models.base.nectar_base_model import NectarBaseModel
+from nectar_comm.models.base.nectar_base_model import NectarBaseModel
 
 
 class CommunicationType(str, Enum):

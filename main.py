@@ -4,11 +4,11 @@ from tortoise.query_utils import Prefetch
 
 # Query Models imports
 
-from models.query.client import Client
-from models.query.clinic import Clinic
-from models.query.communication import Communication
-from models.query.employee import Employee
-from models.query.patient import Patient
+from nectar_comm.models.query.client import Client
+from nectar_comm.models.query.clinic import Clinic
+from nectar_comm.models.query.communication import Communication
+from nectar_comm.models.query.employee import Employee
+from nectar_comm.models.query.patient import Patient
 
 async def reset_db():
     await Tortoise.init(db_url="sqlite://db.sqlite3", modules={"models": ["__main__"]})

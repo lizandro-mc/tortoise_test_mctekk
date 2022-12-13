@@ -1,9 +1,9 @@
 from tortoise import fields
-from models.base.client import ClientBaseModel
-from models.base.clinic import ClinicBaseModel
-from models.base.employee import EmployeeBaseModel
-from models.base.patient import PatientBaseModel
-from models.base.communication import CommunicationBaseModel
+from nectar_comm.models.base.clinic import ClinicBaseModel
+from nectar_comm.models.base.employee import EmployeeBaseModel
+from nectar_comm.models.base.patient import PatientBaseModel
+from nectar_comm.models.base.client import ClientBaseModel
+from nectar_comm.models.base.communication import CommunicationBaseModel
 
 
 """
