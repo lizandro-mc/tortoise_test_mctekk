@@ -1,5 +1,5 @@
 from tortoise import fields
-from base.nectar_base_model import (
+from models.base.nectar_base_model import (
     ClientBaseModel,
     CommunicationBaseModel,
     PatientBaseModel,

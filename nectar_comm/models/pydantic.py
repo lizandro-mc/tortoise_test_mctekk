@@ -8,7 +8,8 @@ from models.relationship import (
     Client,
     Communication,
     Patient,
-    Employee
+    Employee,
+    Clinic
 )
 
 
@@ -18,3 +19,4 @@ Communication_Pydantic = pydantic_model_creator(Communication)
 Communication_Pydantic_list = pydantic_queryset_creator(Communication)
 Patient_Pydantic = pydantic_model_creator(Patient)
 Employee_Pydantic = pydantic_model_creator(Employee)
+Clinic_Pydantic = pydantic_model_creator(Clinic)
