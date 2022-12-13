@@ -3,7 +3,7 @@ from tortoise import Tortoise, run_async
 from tortoise.query_utils import Prefetch
 
 # Models imports
-from models.models_relationship import (
+from nectar_comm.models.relationship import (
     Client,
     Communication
 )

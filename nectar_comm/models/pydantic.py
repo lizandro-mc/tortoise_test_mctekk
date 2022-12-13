@@ -4,7 +4,7 @@ from tortoise.contrib.pydantic import (
     pydantic_queryset_creator
 )
 
-from models.models_relationship import (
+from models.relationship import (
     Client,
     Communication,
     Patient,
