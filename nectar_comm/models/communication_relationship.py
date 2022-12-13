@@ -1,32 +1,27 @@
 from tortoise import fields
-from nectar_comm.models.base.clinic import ClinicBaseModel
-from nectar_comm.models.base.employee import EmployeeBaseModel
-from nectar_comm.models.base.patient import PatientBaseModel
-from nectar_comm.models.base.client import ClientBaseModel
-from nectar_comm.models.base.communication import CommunicationBaseModel
-
+from tortoise.models import Model
 
 """
     Note: Working the relations in the same file allows to avoid the problems with the import cycle in python
 """
 
-class Clinic(ClinicBaseModel):
+class Clinic(Model):
     communications: fields.ReverseRelation["Communication"]
 
 
-class Employee(EmployeeBaseModel):
+class Employee(Model):
     communications: fields.ReverseRelation["Communication"]
 
 
-class Patient(PatientBaseModel):
+class Patient(Model):
     communications: fields.ReverseRelation["Communication"]
 
 
-class Client(ClientBaseModel):
+class Client(Model):
     communications: fields.ReverseRelation["Communication"]
 
 
-class Communication(CommunicationBaseModel):
+class Communication(Model):
     client: fields.ForeignKeyRelation[Client] = fields.ForeignKeyField(
         "models.Client", related_name="communications", to_field="id"
     )
