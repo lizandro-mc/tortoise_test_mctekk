@@ -5,3 +5,11 @@ class Communication(Relations):
     class Meta:
         table = "communications"
         table_description = "Saved all info and type of contact with the patient"
+    
+    @staticmethod
+    def read_communications():
+        pass
+
+    @staticmethod
+    async def create_communication():
+        pass
