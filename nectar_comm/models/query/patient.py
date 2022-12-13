@@ -1,4 +1,4 @@
-from models.nectar_relationship_models import Patient as Relations
+from nectar_comm.models.nectar_relationship_models import Patient as Relations
 
 
 class Patient(Relations):
